@@ -29,7 +29,7 @@ function gridGenerator() {
     // Create new grid container
     const gridContainer = document.createElement('div');
     gridContainer.classList.add('gridContainer');
-    gridContainer.style.cssText = 'display: flex; flex-direction: column; flex-wrap: wrap;  height: 600px; width: 600px;background-color: white;';
+    gridContainer.style.cssText = 'display: flex; flex-direction: column; flex-wrap: wrap;  height: 600px; width: 600px;background-color: white; border:9px ridge black;';
     body.appendChild(gridContainer);
 
     // Calculate grid size minus border width for each cell
@@ -52,20 +52,23 @@ function gridGenerator() {
     // Now that the grid is created, add event listeners to each grid cell
     const divs = document.querySelectorAll('.classin');
     divs.forEach(div => {
-        div.addEventListener('mouseenter', colorGenerator); // Initially random color
+        div.addEventListener('mouseenter', colorGenerator);
+       
+           // Initially random color
     });
    
     const color1 = document.querySelector('.colorChanger');
-    
+    const clear=document.querySelector('.clear');
     
    
     // Listen for color picker changes
-    color1.addEventListener('change', function () {
+    color1.addEventListener('input', function () {
         const selectedColor = color1.value;
         
         // Remove previous event listener for random colors and apply new listener for single color
         divs.forEach(div => {
-            div.removeEventListener('mouseenter', colorGenerator); // Remove random color listener
+            div.removeEventListener('mouseenter', colorGenerator); 
+            
             div.addEventListener('mouseenter', function (e) {
                 singleColor(e, selectedColor); // Apply selected color on click
             });
@@ -73,8 +76,52 @@ function gridGenerator() {
     });
 
 
+   clear.addEventListener('click', function(){
+    divs.forEach(div => {
+        div.style.backgroundColor='transparent';
+        
+        });
+    });
     
+    const erase = document.querySelector('.eraser');
+
+erase.addEventListener('click', function() {
+    divs.forEach(div => {
+        div.addEventListener('mouseenter', function() {
+            div.style.backgroundColor = 'transparent';
+        });
+    });
+});
+
+const effect = document.querySelector('.darken');
+effect.addEventListener('click', function() {
+    divs.forEach(div => 
+        {
+        let counter = 0;
+
+        div.addEventListener('mouseover', function() {
+            if (counter < 10) {
+                let opacityValue = 0.1 + (counter * 0.1);
+                div.style.opacity = opacityValue;
+                counter++;
+            }
+        });
+
+    div.addEventListener('mouseleave', function() {
+    div.style.opacity = 0.1; 
+    counter = 0;  
+   });
+   
+});
+
+});
+
 }
+
+
+
+    
+
 
 // Add event listener to trigger grid generation on button click
 submit.addEventListener('click', gridGenerator);
@@ -87,7 +134,9 @@ function random(number) {
 // Function to change color of clicked grid cell to a random color
 function colorGenerator(e) {
     const rndCol = `rgb(${random(255)}, ${random(255)}, ${random(255)})`;
+  
     e.target.style.backgroundColor = rndCol;  // Apply random background color
+    
 }
 
 // Function to change color of clicked grid cell to the selected color

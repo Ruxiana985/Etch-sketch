@@ -2,8 +2,8 @@
 
 
 body{
-    background-color: rgb(230, 230, 213);
-    border: 10px ridge rgb(114, 73, 80);
+    background-color: rgba(2, 15, 11, 0.889);
+   
 }
 
 
@@ -34,10 +34,11 @@ body{
 }
 
 .gridInput{
-    background-color: pink;
-    border: 3px ridge black;
+    background-color: rgba(39, 60, 55, 0.67);
+    border: 7px ridge black;
     border-radius: 5px;
     height: 30px;
+    color: white;
 }
 .colorChanger{
     border-radius: 5px;
@@ -48,16 +49,17 @@ body{
 
 
 .button{
-    background-color: pink;
-    border: 3px ridge black;
+    background-color: rgba(39, 60, 55, 0.67);
+    border: 7px ridge black;
     border-radius: 5px;
     height: 50px;
     font-size: 1em;
     font-weight: 200;
     font-style: cursive;
+    color: white;
 }
 
 .button:hover{
     transform: scale(1.1);
-    background-color: rgb(219, 123, 139);
+    background-color: rgb(73, 131, 103);
 }
